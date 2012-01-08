@@ -1143,8 +1143,6 @@ cdef class RandomState:
         odiff = <ndarray>PyArray_EnsureArray(temp)
         return cont2_array(self.internal_state, rk_uniform, size, olow, odiff)
 
-
-
     def rand(self, *args):
         """
         rand(d1, ..., dn)
