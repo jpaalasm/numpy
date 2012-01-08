@@ -1157,12 +1157,12 @@ cdef class RandomState:
 
         Parameters
         ----------
-        d0, d1, ..., dn : int
+        d1, ..., dn : int
             Shape of the output.
 
         Returns
         -------
-        out : ndarray, shape ``(d0, d1, ..., dn)``
+        out : ndarray, shape ``(d1, ..., dn)``
             Random values.
 
         See Also
