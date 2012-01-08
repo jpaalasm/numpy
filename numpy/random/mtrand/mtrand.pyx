@@ -1000,9 +1000,11 @@ cdef class RandomState:
         odiff = <ndarray>PyArray_EnsureArray(temp)
         return cont2_array(self.internal_state, rk_uniform, size, olow, odiff)
 
+
+
     def rand(self, *args):
         """
-        rand(d0, d1, ..., dn)
+        rand(d1, ..., dn)
 
         Random values in a given shape.
 
@@ -1045,7 +1047,7 @@ cdef class RandomState:
 
     def randn(self, *args):
         """
-        randn([d1, ..., dn])
+        randn(d1, ..., dn)
 
         Return a sample (or samples) from the "standard normal" distribution.
 
