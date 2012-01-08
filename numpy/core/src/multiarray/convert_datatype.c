@@ -81,18 +81,19 @@ PyArray_GetCastFunc(PyArray_Descr *descr, int type_num)
             key = PyInt_FromLong(type_num);
             cobj = PyDict_GetItem(obj, key);
             Py_DECREF(key);
-            if (NpyCapsule_Check(cobj)) {
+            if (cobj && NpyCapsule_Check(cobj)) {
                 castfunc = NpyCapsule_AsVoidPtr(cobj);
             }
         }
     }
     if (PyTypeNum_ISCOMPLEX(descr->type_num) &&
-        !PyTypeNum_ISCOMPLEX(type_num) &&
-        PyTypeNum_ISNUMBER(type_num) &&
-        !PyTypeNum_ISBOOL(type_num)) {
+            !PyTypeNum_ISCOMPLEX(type_num) &&
+            PyTypeNum_ISNUMBER(type_num) &&
+            !PyTypeNum_ISBOOL(type_num)) {
         PyObject *cls = NULL, *obj = NULL;
         int ret;
         obj = PyImport_ImportModule("numpy.core");
+
         if (obj) {
             cls = PyObject_GetAttrString(obj, "ComplexWarning");
             Py_DECREF(obj);
@@ -109,7 +110,7 @@ PyArray_GetCastFunc(PyArray_Descr *descr, int type_num)
         Py_XDECREF(cls);
         if (ret < 0) {
             return NULL;
-	    }
+        }
     }
     if (castfunc) {
         return castfunc;
